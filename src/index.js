@@ -1,1 +1,19 @@
-console.log('gg')
+// import '../css/index.css'
+import router from './router'
+
+const navigateTo = async url => {
+    history.pushState(null, null, url);
+    await router();
+};
+window.addEventListener("popstate", router);
+
+document.addEventListener("DOMContentLoaded", async () => {
+    document.body.addEventListener("click", e => {
+        if (e.target.matches("[data-link]")) {
+            e.preventDefault();
+            navigateTo(e.target.href);
+        }
+    });
+    await router();
+});
+
