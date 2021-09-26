@@ -16,7 +16,7 @@ window.addEventListener("popstate", router);
 
 document.addEventListener("DOMContentLoaded", async () => {
     document.body.addEventListener("click", navlinkHandler);
-    if(isFirst) { // 첫 요청에 SSR 이후 SPA
+    if(isOnlySPA && isFirst) { // 첫 요청에 SSR 이후 SPA
         console.log("SSR 로 실행되었습니다.")
         isFirst = false;
     }else{
