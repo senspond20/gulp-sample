@@ -6,6 +6,9 @@ const del = require('del');
 const server = require('gulp-express');
 const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config.js');
+const uglify = require('gulp-uglify')
+const babel = require('gulp-babel')
+
 
 // import pkg from 'gulp'
 // import concat from 'gulp-concat'
@@ -42,14 +45,13 @@ task("create-css", async()=>{
     .pipe(dest("dist/css")) 
 });
 
-// task('create-js', async () =>{
-//     console.log('@ src 경로 아래 js,jsx 를 ES5로 변환후 압축해 dist 폴더아래 저장합니다')
-//     await src(['src/**/*.js','src/**/*.jsx'])
-//         .pipe(babel())   // .babelrc 설정으로 들어간다 . 
-//         .pipe(uglify())  //  js 경량화
-//         .pipe(concat("js/main.bundle.js"))
-//         .pipe(dest('dist'))
-// });
+task('create-js', async () =>{
+    await src(['src/**/*.js','src/**/*.jsx'])
+        .pipe(babel())   // .babelrc 설정으로 들어간다 . 
+        // .pipe(uglify())  //  js 경량화
+        // .pipe(concat("js/main.bundle.js"))
+        .pipe(dest('js-test'))
+});
 
 task('webpack-js', async() => {
     console.log(`@ 웹팩으로 js를 번들링 합니다.`)
