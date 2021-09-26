@@ -4,7 +4,7 @@ export default class {
         this.params = params;
     }
     setTitle(title) {
-        document.title = title;
+        document.title = title;      
     }
     // setScript(scriptToAppend){
     //         const script = document.createElement("script");

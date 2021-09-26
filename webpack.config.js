@@ -1,12 +1,12 @@
 import path from "path"
-const __dirname = path.resolve();
 
+// babel 은 아직 적용 안함 
 
 export default {
     mode: 'production',
-    entry: path.join(__dirname, 'src', 'index.js'),
+    entry: path.resolve('src', 'index.js'),
     output: {
-        path: path.join(__dirname, 'dist','js'),
+        path: path.resolve('dist','js'),
         filename: 'main.bundle.js'
     },
 }
