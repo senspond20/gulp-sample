@@ -4,8 +4,13 @@ export default class {
         this.params = params;
     }
     setTitle(title) {
+        this.title = title;
         document.title = title;      
     }
+    setTemplate(template){
+        this.template = template
+    }
+    
     // setScript(scriptToAppend){
     //         const script = document.createElement("script");
     //         script.src = scriptToAppend;

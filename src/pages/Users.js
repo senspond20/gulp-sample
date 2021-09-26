@@ -6,14 +6,16 @@ export default class extends AbstractView {
     constructor(params) {
         super(params);
         this.setTitle("Users");
+        this.setTemplate('user-template')
     }
 
     // 2. 랜더링
     async render() {
+        // console.log(this.template)
         try {
             const response = await axios.get('/template/pages/users.hbs')
             const script = document.createElement('div')
-            // script.setAttribute('type', 'text/x-handlebars-template');
+            script.setAttribute('type', 'text/x-handlebars-template');
             script.setAttribute('id', 'user-template');
             script.append(response.data)
             
@@ -29,8 +31,7 @@ export default class extends AbstractView {
     async afterRender(){
 
         const source = document.getElementById("user-template")?.innerHTML;
-        console.log(source);
-
+ 
         if(source){
             //핸들바 템플릿 컴파일
             const template = Handlebars.compile(source);
@@ -51,7 +52,7 @@ export default class extends AbstractView {
 
             console.log(html)
             //생성된 HTML을 DOM에 주입
-            document.getElementById('user-template').outerHTML = (html);
+            document.getElementById('user-template').outerHTML = html;
         }
     }
 }
