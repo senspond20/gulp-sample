@@ -2,6 +2,7 @@ import pkg from 'gulp'
 import uglify from 'gulp-uglify'
 import concat from 'gulp-concat'
 import cleanCss from 'gulp-clean-css'
+import minifyhtml from 'gulp-minify-html'
 import exit from 'gulp-exit'
 import babel from 'gulp-babel'
 import del from 'del'
@@ -35,7 +36,7 @@ task('clean', async ()=>{
 task("create-css", async()=>{ 
    console.log('@ src 경로 아래 css 들을 하나로 병합하고 압축해 dist 폴더아래 저장합니다')
    await src(["src/**/*.css"])
-    .pipe(concat("style.css")) // 모든 css들을 style.css 하나로 병합 
+    .pipe(concat("style.bundle.css")) // 모든 css들을 병합 
     .pipe(cleanCss({ compatibiliy: 'ie8' })) // ie8 까지 호환성 맞춤
     .pipe(dest("dist/css")) 
 });
@@ -46,8 +47,15 @@ task('create-js', async () =>{
     await src(['src/**/*.js','src/**/*.jsx'])
         .pipe(babel())   // .babelrc 설정으로 들어간다 . 
         .pipe(uglify())  //  js 경량화
+        .pipe(concat("js/main.bundle.js"))
         .pipe(dest('dist'))
 });
+
+task('create-html', async ()=>{
+    await src('src/index.html')
+        .pipe(minifyhtml())
+        .pipe(dest('dist'))
+})
 
 task('end',async()=>{
     console.log('@ 작업 종료합니다')
@@ -60,6 +68,7 @@ task('default', series(
      'clean',
      'create-css',
      'create-js',
+     'create-html',
      'end'
     ]
 ));

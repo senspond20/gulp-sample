@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "start": "live-server --port=3000",
     "build": "gulp"
   },
   "devDependencies": {
@@ -21,7 +22,9 @@
     "gulp-minify-html": "^1.0.6",
     "gulp-uglify": "^3.0.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "presets": [
     "@babel/preset-env"
   ]
