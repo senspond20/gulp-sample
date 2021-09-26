@@ -10,35 +10,19 @@ export default class extends AbstractView {
 
     // 2. 랜더링
     async render() {
-        return `
-            <h1>Users</h1>
-            <p>사용자들 목록입니다</p>
-            <div class="user-table">
-            
-            <script id="entry-template" type="text/x-handlebars-template">
-                <table>
-                    <thead> 
-                        <th>이름</th> 
-                        <th>아이디</th> 
-                        <th>메일주소</th> 
-                    </thead> 
-                    <tbody> 
-                        {{#users}} 
-                        <tr> 
-                            <td>{{name}}</td> 
-                            <td>{{id}}</td> 
-                            <td><a href="mailto:{{email}}">{{email}}</a></td> 
-                        </tr> 
-                        {{/users}} 
-                    </tbody> 
-                </table>
-            </script>
-            
-            </div>
-        `;
+        try {
+            const response = await axios.get('/template/pages/users.hbs')
+            return response.data;
+        } catch (error) {
+            return `
+                <h1>Error</h1>
+                <div>페이지를 불러올 수 없습니다</div>
+            `
+        }
     }
     // 3. 랜더링 이후 데이터 바인딩
     async afterRender(){
+
         const source = document.getElementById("entry-template").innerHTML.toString();
 
         //핸들바 템플릿 컴파일

@@ -13,14 +13,10 @@ const webpackConfig = require('./webpack.config.js');
 // import minifyhtml from 'gulp-minify-html'
 // import del from 'del'
 // import server from 'gulp-express';
-
-
 // import uglify from 'gulp-uglify'
 // import babel from 'gulp-babel'
-
 // import webpackStream from 'webpack-stream'
 // import webpackConfig from './webpack.config.js';
-
 // import connect from 'gulp-connect'
 // import gulWebserver from 'gulp-webserver'
 
@@ -32,11 +28,12 @@ task('clean', async ()=>{
 })
 
 task('create-html', async ()=>{
-    console.log(`@ html을 압축 합니다.`)
-    await src('src/index.html')
+    console.log(`@ html/hbs을 압축 합니다.`)
+    await src(['src/index.html','src/**/*.hbs'])
         .pipe(minifyhtml())
         .pipe(dest('dist'))
 })
+
 task("create-css", async()=>{ 
    console.log('@ src 경로 아래 css 들을 하나로 병합하고 압축해 dist 폴더아래 저장합니다')
    await src(["src/**/*.css"])

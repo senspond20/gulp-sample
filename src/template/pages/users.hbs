@@ -1,0 +1,23 @@
+<h1>Users</h1>
+<p>사용자들 목록입니다</p>
+<div class="user-table">
+
+<script id="entry-template" type="text/x-handlebars-template">
+    <table>
+        <thead> 
+            <th>이름</th> 
+            <th>아이디</th> 
+            <th>메일주소</th> 
+        </thead> 
+        <tbody> 
+            {{#users}} 
+            <tr> 
+                <td>{{name}}</td> 
+                <td>{{id}}</td> 
+                <td><a href="mailto:{{email}}">{{email}}</a></td> 
+            </tr> 
+            {{/users}} 
+        </tbody> 
+    </table>
+</script>
+</div>
