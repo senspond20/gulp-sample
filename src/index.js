@@ -14,7 +14,7 @@ const navlinkHandler =(e)=>{
 window.addEventListener("popstate", router);
 
 document.addEventListener("DOMContentLoaded", async () => {
-    document.body.addEventListener("click", e => navlinkHandler);
+    document.body.addEventListener("click", navlinkHandler);
     await router();
 });
 

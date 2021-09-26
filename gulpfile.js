@@ -1,15 +1,26 @@
-import pkg from 'gulp'
-import concat from 'gulp-concat'
-import cleanCss from 'gulp-clean-css'
-import minifyhtml from 'gulp-minify-html'
-import del from 'del'
-import server from 'gulp-express';
+const pkg = require('gulp');
+const concat = require('gulp-concat');
+const cleanCss  = require('gulp-clean-css');
+const minifyhtml = require('gulp-minify-html');
+const del = require('del');
+const server = require('gulp-express');
+const webpackStream = require('webpack-stream');
+const webpackConfig = require('./webpack.config.js');
+
+// import pkg from 'gulp'
+// import concat from 'gulp-concat'
+// import cleanCss from 'gulp-clean-css'
+// import minifyhtml from 'gulp-minify-html'
+// import del from 'del'
+// import server from 'gulp-express';
+
 
 // import uglify from 'gulp-uglify'
 // import babel from 'gulp-babel'
 
-import webpackStream from 'webpack-stream'
-import webpackConfig from './webpack.config.js';
+// import webpackStream from 'webpack-stream'
+// import webpackConfig from './webpack.config.js';
+
 // import connect from 'gulp-connect'
 // import gulWebserver from 'gulp-webserver'
 

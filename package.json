@@ -30,6 +30,7 @@
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
+    "16": "0.0.2",
     "express": "^4.17.1"
   }
 }

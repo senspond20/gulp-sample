@@ -1,8 +1,9 @@
-import express from "express";
-import path from "path"
+// import express from "express";
+// import path from "path"
 // import Users from "./src/pages/Users.js";
-
-const __dirname = path.resolve();
+const express = require("express");
+const path = require("path")
+// const __dirname = path.resolve();
 
 const app = express();
 const PORT = 3001;
