@@ -1,4 +1,4 @@
-import router from './router'
+import router from './router.js'
 
 const navigateTo = async url => {
     history.pushState(null, null, url);

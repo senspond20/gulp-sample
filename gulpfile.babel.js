@@ -6,6 +6,8 @@ import minifyhtml from 'gulp-minify-html'
 import exit from 'gulp-exit'
 import babel from 'gulp-babel'
 import del from 'del'
+import webpack from 'gulp-webpack';
+import webpackConfig from './webpack.config.js';
 
 const {task, watch, src,dest,series} = pkg;
 
@@ -51,6 +53,13 @@ task('create-js', async () =>{
         .pipe(dest('dist'))
 });
 
+task('webpack', () => {
+    return src('src/js/index.js')
+           .pipe(webpack(webpackConfig))
+           .pipe(dest('dist/js'));
+});
+
+
 task('create-html', async ()=>{
     await src('src/index.html')
         .pipe(minifyhtml())
@@ -67,8 +76,8 @@ task('default', series(
      'start',
      'clean',
      'create-css',
-     'create-js',
      'create-html',
+    //  'webpack',
      'end'
     ]
 ));

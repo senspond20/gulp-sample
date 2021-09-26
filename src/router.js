@@ -1,7 +1,7 @@
-import Dashboard from "./pages/Dashboard";
-import Posts from "./pages/Posts";
-import PostView from "./pages/PostView";
-import Settings from "./pages/Settings";
+import Dashboard from "./pages/DashBoard.js";
+import Posts from "./pages/Post.js";
+import PostView from "./pages/PostView.js";
+import Settings from "./pages/Settings.js";
 
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 

@@ -1,10 +1,9 @@
-import AbstractView from "../components/AbstractView";
+import AbstractView from "../components/AbstractView.js";
 
 export default class extends AbstractView {
     constructor(params) {
         super(params);
         this.setTitle("Settings");
-        this.setScript("setting.bundle.js")
     }
 
     // 1. 랜더링
@@ -13,7 +12,7 @@ export default class extends AbstractView {
 
 
         return `
-            <h1 id="title">Settings</h1>
+            <h1 id="stitle">Settings</h1>
             <p>Manage your privacy and configuration.</p>
         `;
     }
@@ -24,11 +23,11 @@ export default class extends AbstractView {
         // const titleClickHandler = ()=>{
         //     alert('제목 클릭 했엉')
         // }
-        const title = document.getElementById('title');
+        const title = document.getElementById('stitle');
         console.log(title);
-        title.addEventListener('click',function (){
-            console.log("gggggg")
-        })
+        // title.addEventListener('click',function (){
+            // console.log("gggggg")
+        // })
 
     }
 
