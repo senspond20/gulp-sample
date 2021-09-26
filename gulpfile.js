@@ -1,37 +1,66 @@
-import gulp from 'gulp'
+import pkg from 'gulp'
 import uglify from 'gulp-uglify'
+import concat from 'gulp-concat'
+import cleanCss from 'gulp-clean-css'
 import exit from 'gulp-exit'
 import babel from 'gulp-babel'
-// import gjc from 'gulp-jsx-coverage'
+import del from 'del'
 
-﻿gulp.task('hello', async()=> {
+const {task, watch, src,dest,series} = pkg;
+
+task('hello', async()=> {
     await console.log('작업1수행')
     await console.log('작업2수행')
     await console.log('작업3수행')
 });
 
 
-gulp.task('js-watch', () =>{
+task('js-watch', () =>{
     const path = 'src/**/*.js';
-    gulp.watch([path]).on('add', (path, stats)=>{
+    watch([path]).on('add', (path, stats)=>{
       console.log(`File ${path} add`);
    });
-   gulp.watch([path]).on('change', (path, stats)=>{
+   watch([path]).on('change', (path, stats)=>{
       console.log(`File ${path} was changed`);
    });
 });
 
-// console.log('start')
-gulp.task('default', async () =>{
-    console.log('@ src 경로 아래 js를 압축해 dist 폴더아래 저장합니다')
-
-    await gulp.src(['src/**/*.js','src/**/*.jsx'])
-        .pipe(uglify())
-        .pipe(babel({
-            presets: ['es2015', 'react']
-        }))
-        .pipe(gulp.dest('dist'))
-        .pipe(exit())
- 
-    console.log('@ [작업완료 - 종료]')
+task('start', async ()=>{
+    console.log('@ 작업 시작합니다')
+})
+task('clean', async ()=>{
+    console.log('@ dist 하위 경로 강제 삭제')
+    await del(['dist/**/*'], {force :true});
+})
+task("create-css", async()=>{ 
+   console.log('@ src 경로 아래 css 들을 하나로 병합하고 압축해 dist 폴더아래 저장합니다')
+   await src(["src/**/*.css"])
+    .pipe(concat("style.css")) // 모든 css들을 style.css 하나로 병합 
+    .pipe(cleanCss({ compatibiliy: 'ie8' })) // ie8 까지 호환성 맞춤
+    .pipe(dest("dist/css")) 
 });
+
+// console.log('start')
+task('create-js', async () =>{
+    console.log('@ src 경로 아래 js,jsx 를 ES5로 변환후 압축해 dist 폴더아래 저장합니다')
+    await src(['src/**/*.js','src/**/*.jsx'])
+        .pipe(babel())   // .babelrc 설정으로 들어간다 . 
+        .pipe(uglify())  //  js 경량화
+        .pipe(dest('dist'))
+});
+
+task('end',async()=>{
+    console.log('@ 작업 종료합니다')
+})
+
+// default -> celan -> create-css -> create-js
+task('default', series(
+    [
+     'start',
+     'clean',
+     'create-css',
+     'create-js',
+     'end'
+    ]
+));
+
