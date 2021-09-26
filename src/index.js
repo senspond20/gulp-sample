@@ -1,6 +1,6 @@
-import router from './router.js'
+import router from './routes/index.js'
 
-const navigateTo = async url => {
+const navigateTo = async (url) => {
     history.pushState(null, null, url);
     await router();
 };

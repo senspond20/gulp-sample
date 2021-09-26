@@ -1,7 +1,4 @@
-import Dashboard from "./pages/DashBoard.js";
-import Posts from "./pages/Post.js";
-import PostView from "./pages/PostView.js";
-import Settings from "./pages/Settings.js";
+import routes from "./routes.js";
 
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
@@ -16,13 +13,7 @@ const getParams = match => {
 
 // 라우터 정의
 const router = async () => {
-    const routes = [
-        { path: "/", view: Dashboard },
-        { path: "/posts", view: Posts },
-        { path: "/posts/:id", view: PostView },
-        { path: "/settings", view: Settings }
-    ];
-
+  
     // Test each route for potential match
     const potentialMatches = routes.map(route => {
         return {
@@ -42,7 +33,7 @@ const router = async () => {
     const view = new match.route.view(getParams(match));
 
     // 랜더링
-    document.getElementById("root").innerHTML = await view.render();
+    document.getElementById("main-conent").innerHTML = await view.render();
 
     // 랜더링 이후에 들어갈것
     await view.afterRender();
