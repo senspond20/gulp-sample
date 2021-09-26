@@ -18,7 +18,10 @@ app.set('view engine', 'hbs');
 
 app.use("/", express.static('dist', { root: __dirname }));
 const viewPath = path.resolve('src','template','pages');
-
+app.get("/settings", (req,res)=>{
+    res.send("ggg")
+    res.end();
+})
 app.get("/users", (req,res)=>{
     res.render(path.join(viewPath,'users.hbs'),{
         users: [
