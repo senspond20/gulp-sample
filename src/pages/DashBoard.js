@@ -8,9 +8,9 @@ export default class extends AbstractView {
 
     async render() {
         return `
-            <h1>Welcome back, Dom</h1>
+            <h1>Welcome !!! </h1>
             <p>
-                Fugiat voluptate et nisi Lorem cillum anim sit do eiusmod occaecat irure do. Reprehenderit anim fugiat sint exercitation consequat. Sit anim laborum sit amet Lorem adipisicing ullamco duis. Anim in do magna ea pariatur et.
+                안녕하세요. 반갑습니다. 당신을 환영합니다.
             </p>
             <p>
                 <a href="/posts" data-link>View recent posts</a>.
