@@ -54,7 +54,7 @@ export default class extends AbstractView {
                 { name: "홍길동5", id: "aaa5", email: "aaa5@gmail.com" }
             ]
         };
-
+        this.setTitle('포스팅변경')
         //핸들바 템플릿에 데이터를 바인딩해서 HTML 생성
         const html = template(data);
 
